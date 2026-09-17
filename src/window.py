@@ -73,21 +73,3 @@ def create_record_windows(record):
     )
 
     return acc_windows, gyro_windows, mic_windows
-
-
-train_dataset, test_dataset = build_complete_dataset()
-
-record = train_dataset[0]
-
-acc_windows, gyro_windows, mic_windows = create_record_windows(record)
-
-print("ACC:", len(acc_windows))
-print("GYRO:", len(gyro_windows))
-print("MIC:", len(mic_windows))
-
-print()
-print("Pierwsze okno:")
-
-print("ACC:", acc_windows[0].shape)
-print("GYRO:", gyro_windows[0].shape)
-print("MIC:", mic_windows[0].shape)
