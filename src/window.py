@@ -1,15 +1,19 @@
 import pandas as pd
 from data_loader import build_complete_dataset
 
-WINDOW_SIZE = 0.1
-OVERLAP = 0.5
+
+WINDOW_SIZE = 0.5
+OVERLAP = 0.75
 STEP_SIZE = WINDOW_SIZE * (1 - OVERLAP)
 
-# window = 100 ms
-# overlap = 50%
-# step = 50 ms
 
-def create_windows(df, window_size, step_size, start_time=None, end_time=None):
+def create_windows(
+    df,
+    window_size,
+    step_size,
+    start_time=None,
+    end_time=None
+):
 
     if start_time is None:
         start_time = df["Time"].iloc[0]
@@ -25,7 +29,10 @@ def create_windows(df, window_size, step_size, start_time=None, end_time=None):
 
         current_end = current_start + window_size
 
-        window = df[(df["Time"] >= current_start) & (df["Time"] < current_end)].copy()
+        window = df[
+            (df["Time"] >= current_start) &
+            (df["Time"] < current_end)
+        ].copy()
 
         windows.append(window)
 
@@ -73,3 +80,12 @@ def create_record_windows(record):
     )
 
     return acc_windows, gyro_windows, mic_windows
+
+
+train_dataset, test_dataset = build_complete_dataset()
+
+record = train_dataset[0]
+
+acc_windows, gyro_windows, mic_windows = create_record_windows(record)
+
+
