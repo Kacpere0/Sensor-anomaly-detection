@@ -1,0 +1,26 @@
+{
+    "ACC": {
+        "n_estimators": 50,
+        "max_samples": 1024,
+        "max_features": 0.8,
+        "bootstrap": false,
+        "threshold": 0.5268351498152332,
+        "aggregation": "max"
+    },
+    "MIC": {
+        "n_estimators": 50,
+        "max_samples": 2048,
+        "max_features": 0.9,
+        "bootstrap": false,
+        "threshold": 0.3660668015568886,
+        "aggregation": "median"
+    },
+    "GYRO": {
+        "n_estimators": 50,
+        "max_samples": 2048,
+        "max_features": 0.8,
+        "bootstrap": false,
+        "threshold": 0.3972321404293511,
+        "aggregation": "median"
+    }
+}
