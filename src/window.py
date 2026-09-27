@@ -37,11 +37,8 @@ def create_windows(df, window_size, step_size, start_time=None, end_time=None):
     while current_start + window_size <= end_time:
         current_end = current_start + window_size
 
-        window = df[
-            (df["Time"] >= current_start) &
-            (df["Time"] < current_end)
-        ].copy()
-
+        window = df[(df["Time"] >= current_start) & (df["Time"] < current_end)].copy()
+        
         windows.append(window)
         current_start += step_size
 
@@ -63,6 +60,7 @@ def create_record_windows(record):
     )
     
     filtered_gyro = lowpass_filter_signal(record.gyro, cutoff=150, fs=6700, order=4)
+    filtered_mic = lowpass_filter_signal(record.mic, cutoff=4000, fs=16000, order=4)
 
     acc_windows = create_windows(
         record.acc,
@@ -81,7 +79,7 @@ def create_record_windows(record):
     )
 
     mic_windows = create_windows(
-        record.mic,
+        filtered_mic,
         WINDOW_SIZE,
         STEP_SIZE,
         start_time,
